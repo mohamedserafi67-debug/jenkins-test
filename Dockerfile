@@ -2,7 +2,7 @@ FROM node:18-alpine
 
 USER root
 
-WORKDIR /app
+WORKDIR /var/jenkins_home/workspace/dockerimage 
 
 COPY package.json .
 
@@ -21,5 +21,6 @@ COPY . .
 EXPOSE 4000
 
 CMD ["npm", "run", "dev"]
+
 
 
