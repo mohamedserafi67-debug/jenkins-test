@@ -4,8 +4,6 @@ USER root
 
 WORKDIR /var/jenkins_home/workspace/nodejsimagebuild
 
-COPY package.json /var/jenkins_home/workspace/nodejsimagebuild
-
 COPY . /var/jenkins_home/workspace/nodejsimagebuild
 
 RUN npm install
@@ -23,6 +21,7 @@ RUN apt-get update && apt-get install -y apt-transport-https ca-certificates cur
 EXPOSE 4000
 
 CMD ["npm", "run", "dev"]
+
 
 
 
