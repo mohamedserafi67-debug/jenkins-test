@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  jenkins:
+    # Use 'build: .' to build the Dockerfile in the same directory (from Step 1)
+    build: . 
+    user: root
+    environment:
+      - DOCKER_GID=999
+    
+    # Optional: If you fixed permissions by matching GIDs, you might set a user here.
+    # user: "1000:999"  
+    
+    privileged: true
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    
+    volumes:
+      # CRITICAL FIX 1: Mount the Docker socket for communication
+      - /var/run/docker.sock:/var/run/docker.sock 
+      
+      # Persist Jenkins data 
+      - jenkins_home:/var/jenkins_home
+      
+      # CRITICAL FIX 2: THIS IS WHERE THE DOCKERFILE MUST BE LOCATED
+      # This line maps your local build folder to the job's workspace.
+      # The 'Dockerfile' must be inside the directory mapped to the workspace.
+      # If your workspace is 'dockerimage', you must ensure the 'Dockerfile' is in the source path.
+      # Assuming you want to map your current local directory to the workspace for easy file access:
+      - .:/var/jenkins_home/workspace/dockerimage 
+
+volumes:
+  jenkins_home:
