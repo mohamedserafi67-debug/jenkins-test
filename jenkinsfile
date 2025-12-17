@@ -9,7 +9,7 @@ pipeline {
     environment {
         // You define simple string variables directly here
         DOCKER_HUB_USER = 'm7md1667'
-        DOCKER_CREDS_ID = 'dckr_pat_DoZqb7cJJDgswjPCS4u7a-9s3Ho'
+        DOCKER_CREDS_ID = ''
         credentialsId = 'docker-hub-credentials'
         // You can define variables that use Groovy/expression syntax using the 'script' block 
         // OR by using the $ notation for environment variables defined above
@@ -65,3 +65,4 @@ pipeline {
       
 }
    
+
